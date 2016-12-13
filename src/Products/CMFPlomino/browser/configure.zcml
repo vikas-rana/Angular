@@ -1,0 +1,395 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="Products.CMFPlomino">
+
+    <!-- permissions -->
+    <permission
+        id="plomino.DESIGN_PERMISSION"
+        title="CMFPlomino: Modify Database design"
+        />
+    <permission
+        id="plomino.EDIT_PERMISSION"
+        title="CMFPlomino: Edit documents"
+        />
+    <permission
+        id="plomino.ACL_PERMISSION"
+        title="CMFPlomino: Control Database ACL"
+        />
+
+    <browser:resourceDirectory
+        name="Products.CMFPlomino"
+        directory="static"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="view"
+        class=".database.DatabaseView"
+        attribute="view"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="DatabaseDesign"
+        class=".database.DatabaseView"
+        attribute="design"
+        permission="plomino.DESIGN_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="designtree"
+        class=".database.DatabaseView"
+        attribute="tree"
+        permission="plomino.DESIGN_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="profiling"
+        class=".database.DatabaseView"
+        attribute="profiling"
+        permission="plomino.DESIGN_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="code"
+        class=".database.DatabaseView"
+        attribute="code"
+        permission="plomino.DESIGN_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="DatabaseACL"
+        class=".database.DatabaseView"
+        attribute="acl"
+        permission="plomino.ACL_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.database.IPlominoDatabase"
+        name="DatabaseReplication"
+        class=".database.DatabaseView"
+        attribute="replication"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        name="OpenForm"
+        class=".form.FormView"
+        attribute="openform"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        name="OpenBareForm"
+        class=".form.FormView"
+        attribute="openbareform"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        name="page"
+        class=".form.PageView"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        name="add-field"
+        class=".form.FormView"
+        attribute="addField"
+        permission="plomino.DESIGN_PERMISSION"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.interfaces.IPlominoContext"
+        name="document"
+        permission="zope.Public"
+        class=".document.DocumentView"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.view.IPlominoView"
+        name="OpenView"
+        class=".view.ViewView"
+        attribute="openview"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.view.IPlominoView"
+        name="tojson"
+        class=".view.ViewView"
+        attribute="json"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.interfaces.IPlominoContext"
+        name="plomino_errors"
+        class=".errors.ErrorMessages"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.interfaces.IPlominoContext"
+        name="plomino_actions"
+        class=".actions.Actions"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="Products.CMFPlomino.contents.field.IPlominoField"
+        name="filterusers"
+        class=".field.FieldView"
+        attribute="filterusers"
+        permission="zope.Public"
+        />
+
+    <!-- TinyMCE -->
+
+    <browser:page
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        name="tinymceplominoform"
+        class=".tinymce.TinyMCEPlominoFormView"
+        allowed_interface=".tinymce.ITinyMCEPlominoFormView"
+        allowed_attributes="action_form cache_form field_form hidewhen_form subform_form label_form error_page valid_page"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="tinyform"
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        class=".tinymce.PlominoFormSettings"
+        permission="zope.Public"
+        allowed_attributes="getField addField addLabel addAction addHidewhen addCache addSubForm action_template example_widget ajax_success ajax_cancel"
+        />
+
+    <browser:page
+        name="tinyajax"
+        for="Products.CMFPlomino.contents.form.IPlominoForm"
+        class=".tinymce.TinyAjax"
+        permission="zope.Public"
+        allowed_attributes="ajax_success ajax_cancel"
+        />
+    <browser:page
+        name="tinyajax"
+        for="Products.CMFPlomino.contents.field.IPlominoField"
+        class=".tinymce.TinyAjax"
+        permission="zope.Public"
+        allowed_attributes="ajax_success ajax_cancel"
+        />
+    <browser:page
+        name="tinyajax"
+        for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen"
+        class=".tinymce.TinyAjax"
+        permission="zope.Public"
+        allowed_attributes="ajax_success ajax_cancel"
+        />
+    <browser:page
+        name="tinyajax"
+        for="Products.CMFPlomino.contents.action.IPlominoAction"
+        class=".tinymce.TinyAjax"
+        permission="zope.Public"
+        allowed_attributes="ajax_success ajax_cancel"
+        />
+
+   <browser:page
+        name="tinyfield"
+        for="Products.CMFPlomino.contents.field.IPlominoField"
+        class=".tinymce.PlominoFieldSettings"
+        permission="zope.Public"
+        allowed_attributes="setFieldProperties"
+        />
+
+   <browser:page
+        name="tinyhidewhen"
+        for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen"
+        class=".tinymce.PlominoHidewhenSettings"
+        permission="zope.Public"
+        allowed_attributes="setHidewhenProperties"
+        />
+
+   <browser:page
+        name="tinyaction"
+        for="Products.CMFPlomino.contents.action.IPlominoAction"
+        class=".tinymce.PlominoActionSettings"
+        permission="zope.Public"
+        allowed_attributes="setActionProperties"
+        />
+
+    <!--
+
+   <browser:page
+        name="tinycache"
+        for="Products.CMFPlomino.contents..IPlominoCache"
+        class=".cache.PlominoCache"
+        permission="zope.Public"
+        allowed_attributes="setCacheProperties"
+        />
+    -->
+
+    <!--<browser:page-->
+        <!--for="Products.CMFPlomino.contents.form.IPlominoForm"-->
+        <!--name="HelperForm"-->
+        <!--class=".helpers.HelperView"-->
+        <!--attribute="openform"-->
+        <!--permission="zope.Public"-->
+        <!--/>-->
+
+  <adapter
+      factory="Products.CMFPlomino.browser.helpers.MacroWidget"
+      provides="z3c.form.interfaces.IFieldWidget"
+      for="zope.schema.interfaces.IAbstractSet
+           zope.schema.interfaces.IObject
+           plone.app.z3cform.interfaces.IPloneFormLayer"
+      />
+  <adapter factory=".helpers.MacroWidgetConverter" />
+    <subscriber
+      for="Products.CMFPlomino.contents.form.IPlominoForm
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".helpers.update_helpers"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.field.IPlominoField
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".helpers.update_helpers"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.action.IPlominoAction
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".helpers.update_helpers"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".helpers.update_helpers"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.view.IPlominoView
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".helpers.update_helpers"
+      />
+
+    <plone:behavior
+        title="Helpers"
+        description="Lets an object use external forms to generate its formulas"
+        provides=".helpers.IHelpers"
+        factory=".helpers.Helpers"
+        />
+
+    <plone:behavior
+        title="ajax_hidden_fields"
+        description="retain ajax mode in hidden fields"
+        provides=".tinymce.IAJAXHiddenFields"
+        factory=".tinymce.AJAXHiddenFields"
+        />
+
+  <z3c:widgetTemplate
+      mode="input"
+      widget=".helpers.IMacroWidget"
+      layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+      template="templates/multi_helpers.pt"
+      />
+
+
+
+  <plone:portlet
+      name="plomino.designportlet"
+      interface=".portlet.IPortlet"
+      assignment=".portlet.Assignment"
+      view_permission="zope2.View"
+      edit_permission="plomino.DESIGN_PERMISSION"
+      renderer=".portlet.Renderer"
+      addview=".portlet.AddForm"
+      editview=".portlet.EditForm"
+    />
+
+  <plone:portlet
+      name="plomino.elementportlet"
+      interface=".portlet.IElementPortlet"
+      assignment=".portlet.ElementPortletAssignment"
+      view_permission="zope2.View"
+      edit_permission="plomino.DESIGN_PERMISSION"
+      renderer=".portlet.ElementPortletRenderer"
+      addview=".portlet.ElementPortletAddForm"
+      editview=".portlet.ElementPortletEditForm"
+    />
+
+
+
+        <!--Override the edit and add views so we can control the nexturl when we are in the tinymce popup-->
+
+    <subscriber
+      for="Products.CMFPlomino.contents.field.IPlominoField
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.action.IPlominoAction
+           plone.dexterity.interfaces.IEditFinishedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+
+    <subscriber
+      for="Products.CMFPlomino.contents.field.IPlominoField
+           plone.dexterity.interfaces.IEditCancelledEvent"
+      handler=".tinymce.ajax_iframe_cancel"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen
+           plone.dexterity.interfaces.IEditCancelledEvent"
+      handler=".tinymce.ajax_iframe_cancel"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.action.IPlominoAction
+           plone.dexterity.interfaces.IEditCancelledEvent"
+      handler=".tinymce.ajax_iframe_cancel"
+      />
+
+    <subscriber
+      for="Products.CMFCore.interfaces.IFolderish
+           plone.dexterity.interfaces.IAddCancelledEvent"
+      handler=".tinymce.ajax_iframe_cancel"
+      />
+
+    <subscriber
+      for="Products.CMFPlomino.contents.field.IPlominoField
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.hidewhen.IPlominoHidewhen
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+    <subscriber
+      for="Products.CMFPlomino.contents.action.IPlominoAction
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".tinymce.ajax_iframe_success"
+      />
+
+    <!-- Custom Add/Edit for PlominoField -->
+    <browser:page
+        for="Products.CMFPlomino.contents.field.IPlominoField"
+        name="edit"
+        class=".field.EditForm"
+        permission="cmf.ModifyPortalContent"
+        />
+
+</configure>
